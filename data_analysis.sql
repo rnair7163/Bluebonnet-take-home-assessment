@@ -5,7 +5,7 @@ For this exercise, I will be writing queries in PostgreSQL
 /*
 Question 1 - How many people not registered as Democrats voted in the Primaries? 
 */
-select count(voter_id) as voter_count -- I am not distict count here since it's already mentioned that there are no duplicates
+select count(voter_id) as voter_count -- I am not performing distict count here since it's already mentioned that there are no duplicates
 from 2021_Special_Primaries
 where current_party <> 'D';
 -------------------------------------------------------------------------------------------------------------------------------
