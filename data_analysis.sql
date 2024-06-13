@@ -41,9 +41,9 @@ where voter_id not in (select voter_id from 2021_Special_Generals);
 Question 5 - Produce counts for how many votes were cast in each Zip Code across both the Generals and Primaries 
              (i.e., if one person voted in both a General and a Primary, that counts as two votes cast within their Zip Code)
 */
-select coalesce(sp.zip_code, sg.zip_code) as zip_codes,
-       count(sp.voter_id) + count(sg.voter_id) as voter_count 
+select sp.zip_code,
+       count(sp.voter_id) + count(sg.voter_id) as total_vote_count 
 from 2021_Special_Primaries as sp 
-outer join 2021_Special_Generals as sg 
-        on sp.voter_id = sg.voter_id -- using an outer join so that every voter is included from both primary and general election
-group by zip_codes;
+join 2021_Special_Generals as sg 
+  on sp.zip_code = sg.zip_code
+group by sp.zip_code;
